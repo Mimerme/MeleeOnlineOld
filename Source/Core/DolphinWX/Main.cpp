@@ -50,6 +50,13 @@
 
 #include "VideoCommon/VideoBackendBase.h"
 
+#include <Windows.h>
+#include <iostream>
+#include <sstream>
+
+//MeleeNET Hook
+#include "MeleeNET.h"
+
 #if defined HAVE_X11 && HAVE_X11
 #include <X11/Xlib.h>
 #endif
@@ -77,7 +84,7 @@ bool DolphinApp::Initialize(int& c, wxChar** v)
 // The 'main program' equivalent that creates the main window and return the main frame
 
 bool DolphinApp::OnInit()
-{
+{ 
   std::lock_guard<std::mutex> lk(s_init_mutex);
   if (!wxApp::OnInit())
     return false;
@@ -124,6 +131,10 @@ bool DolphinApp::OnInit()
 
   AfterInit();
 
+  //BEGIN POST INITALIZTION ROUTINE
+  CFrame* f = wxGetApp().GetCFrame();
+  f->OnNetPlay(wxCommandEvent());
+
   return true;
 }
 
@@ -139,6 +150,9 @@ void DolphinApp::OnInitCmdLine(wxCmdLineParser& parser)
       {wxCMD_LINE_OPTION, "e", "exec",
        "Loads the specified file (ELF, DOL, GCM, ISO, WBFS, CISO, GCZ, WAD)", wxCMD_LINE_VAL_STRING,
        wxCMD_LINE_PARAM_OPTIONAL},
+	   { wxCMD_LINE_OPTION, "n", "netplay",
+	   "Connects you/Creates a new netplay lobby", wxCMD_LINE_VAL_STRING,
+	   wxCMD_LINE_PARAM_OPTIONAL },
       {wxCMD_LINE_SWITCH, "b", "batch", "Exit Dolphin with emulator", wxCMD_LINE_VAL_NONE,
        wxCMD_LINE_PARAM_OPTIONAL},
       {wxCMD_LINE_OPTION, "c", "confirm", "Set Confirm on Stop", wxCMD_LINE_VAL_STRING,
@@ -158,6 +172,7 @@ void DolphinApp::OnInitCmdLine(wxCmdLineParser& parser)
 
 bool DolphinApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
+
   if (argc == 2 && File::Exists(argv[1].ToUTF8().data()))
   {
     m_load_file = true;
@@ -171,6 +186,7 @@ bool DolphinApp::OnCmdLineParsed(wxCmdLineParser& parser)
   if (!m_load_file)
     m_load_file = parser.Found("exec", &m_file_to_load);
 
+
   m_use_debugger = parser.Found("debugger");
   m_use_logger = parser.Found("logger");
   m_batch_mode = parser.Found("batch");
@@ -178,6 +194,15 @@ bool DolphinApp::OnCmdLineParsed(wxCmdLineParser& parser)
   m_select_video_backend = parser.Found("video_backend", &m_video_backend_name);
   m_select_audio_emulation = parser.Found("audio_emulation", &m_audio_emulation_name);
   m_play_movie = parser.Found("movie", &m_movie_file);
+
+  wxString m_netplay_code;
+  bool m_netplay;
+  m_netplay = parser.Found("netplay", &m_netplay_code);
+
+  MeleeNET::setNetplay(m_netplay);
+  MeleeNET::setNetplayCode(m_netplay_code);
+  MeleeNET::LogToVSDebug(m_netplay_code.mb_str(wxConvUTF8).data());;
+
   parser.Found("user", &m_user_path);
 
   return true;
@@ -219,6 +244,7 @@ void DolphinApp::AfterInit()
 
     DolphinAnalytics::Instance()->ReloadConfig();
   }
+
 
   if (m_confirm_stop)
   {

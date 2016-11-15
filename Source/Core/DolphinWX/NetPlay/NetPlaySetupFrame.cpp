@@ -24,6 +24,7 @@
 #include "DolphinWX/NetPlay/NetPlaySetupFrame.h"
 #include "DolphinWX/NetPlay/NetWindow.h"
 #include "DolphinWX/WxUtils.h"
+#include "../MeleeNET.h"
 
 namespace
 {
@@ -52,7 +53,14 @@ NetPlaySetupFrame::NetPlaySetupFrame(wxWindow* const parent, const CGameListCtrl
 
     temp.clear();
     netplay_section.Get("HostCode", &temp, "00000000");
-    m_connect_hashcode_text->SetValue(StrToWxStr(temp));
+
+	if (MeleeNET::getNetplay()) {
+		m_connect_hashcode_text->SetValue(MeleeNET::getNetplayCode());
+	}
+	else {
+		m_connect_hashcode_text->SetValue(StrToWxStr(temp));
+	}
+
 
     temp.clear();
     netplay_section.Get("Address", &temp, "127.0.0.1");

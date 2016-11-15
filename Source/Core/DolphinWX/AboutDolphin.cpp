@@ -23,11 +23,10 @@ AboutDolphin::AboutDolphin(wxWindow* parent, wxWindowID id, const wxString& titl
   wxGenericStaticBitmap* const sbDolphinLogo = new wxGenericStaticBitmap(
       this, wxID_ANY, WxUtils::LoadScaledResourceBitmap("dolphin_logo", this));
 
-  const wxString DolphinText = _("Dolphin");
+  const wxString DolphinText = _("Melee.net");
   const wxString RevisionText = scm_desc_str;
   const wxString CopyrightText =
-      _("(c) 2003-2015+ Dolphin Team. \"GameCube\" and \"Wii\" are trademarks of Nintendo. Dolphin "
-        "is not affiliated with Nintendo in any way.");
+      _("(c) Lololololol. Custom Melee.net build");
   const wxString BranchText = wxString::Format(_("Branch: %s"), scm_branch_str.c_str());
   const wxString BranchRevText = wxString::Format(_("Revision: %s"), scm_rev_git_str.c_str());
   const wxString CheckUpdateText = _("Check for updates: ");
@@ -35,7 +34,7 @@ AboutDolphin::AboutDolphin(wxWindow* parent, wxWindowID id, const wxString& titl
       _("\n"
         "Dolphin is a free and open-source GameCube and Wii emulator.\n"
         "\n"
-        "This software should not be used to play games you do not legally own.\n");
+        "This software should not be used to play games you do not legally own.\n This is a custom build of dolphin to easily work with Melee netplay");
   const wxString LicenseText = _("License");
   const wxString AuthorsText = _("Authors");
   const wxString SupportText = _("Support");

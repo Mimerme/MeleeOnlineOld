@@ -6,4 +6,10 @@
     <LocalDebuggerWorkingDirectory>$(BinaryOutputDir)</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>/e "C:\Users\Andros Yang\Desktop\Games\M\Super Smash Bros. Melee (USA) (v1.02).iso" /c false /b</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommandArguments>/n 929292</LocalDebuggerCommandArguments>
+  </PropertyGroup>
 </Project>

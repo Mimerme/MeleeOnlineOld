@@ -82,6 +82,7 @@
 #include "VideoCommon/RenderBase.h"
 #include "VideoCommon/VideoBackendBase.h"
 #include "VideoCommon/VideoConfig.h"
+#include "MeleeNET.h"
 
 class InputConfig;
 class wxFrame;
@@ -163,7 +164,10 @@ void CFrame::BindMenuBarEvents()
   Bind(wxEVT_MENU, &CFrame::OnImportSave, this, IDM_IMPORT_SAVE);
   Bind(wxEVT_MENU, &CFrame::OnExportAllSaves, this, IDM_EXPORT_ALL_SAVE);
   Bind(wxEVT_MENU, &CFrame::OnShowCheatsWindow, this, IDM_CHEATS);
+
+
   Bind(wxEVT_MENU, &CFrame::OnNetPlay, this, IDM_NETPLAY);
+
   Bind(wxEVT_MENU, &CFrame::OnInstallWAD, this, IDM_MENU_INSTALL_WAD);
   Bind(wxEVT_MENU, &CFrame::OnLoadWiiMenu, this, IDM_LOAD_WII_MENU);
   Bind(wxEVT_MENU, &CFrame::OnFifoPlayer, this, IDM_FIFOPLAYER);
@@ -1105,12 +1109,16 @@ void CFrame::StatusBarMessage(const char* Text, ...)
 // NetPlay stuff
 void CFrame::OnNetPlay(wxCommandEvent& WXUNUSED(event))
 {
+
   if (!g_NetPlaySetupDiag)
   {
-    if (NetPlayDialog::GetInstance() != nullptr)
-      NetPlayDialog::GetInstance()->Raise();
-    else
-      g_NetPlaySetupDiag = new NetPlaySetupFrame(this, m_GameListCtrl);
+
+	  if (NetPlayDialog::GetInstance() != nullptr) {
+		  NetPlayDialog::GetInstance()->Raise();
+	  }
+	  else {
+		  g_NetPlaySetupDiag = new NetPlaySetupFrame(this, m_GameListCtrl);
+	  }
   }
   else
   {

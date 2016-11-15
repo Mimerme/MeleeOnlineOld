@@ -66,6 +66,9 @@ wxDECLARE_EVENT(DOLPHIN_EVT_UPDATE_LOAD_WII_MENU_ITEM, wxCommandEvent);
 class CFrame : public CRenderFrame
 {
 public:
+	//HACK: OnNetPlay is exposed so that it can be called at the end of the UI initalization
+	void OnNetPlay(wxCommandEvent& event);
+
   CFrame(wxFrame* parent, wxWindowID id = wxID_ANY, const wxString& title = "Dolphin",
          wxRect geometry = wxDefaultSize, bool use_debugger = false, bool batch_mode = false,
          bool show_log_window = false,
@@ -302,8 +305,6 @@ private:
   void OnMemcard(wxCommandEvent& event);  // Misc
   void OnImportSave(wxCommandEvent& event);
   void OnExportAllSaves(wxCommandEvent& event);
-
-  void OnNetPlay(wxCommandEvent& event);
 
   void OnShowCheatsWindow(wxCommandEvent& event);
   void OnLoadWiiMenu(wxCommandEvent& event);
