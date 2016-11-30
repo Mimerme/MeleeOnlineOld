@@ -84,7 +84,8 @@ bool DolphinApp::Initialize(int& c, wxChar** v)
 // The 'main program' equivalent that creates the main window and return the main frame
 
 bool DolphinApp::OnInit()
-{ 
+{
+
   std::lock_guard<std::mutex> lk(s_init_mutex);
   if (!wxApp::OnInit())
     return false;
@@ -127,14 +128,30 @@ bool DolphinApp::OnInit()
                          SConfig::GetInstance().iWidth, SConfig::GetInstance().iHeight);
   main_frame = new CFrame(nullptr, wxID_ANY, StrToWxStr(scm_rev_str), window_geometry,
                           m_use_debugger, m_batch_mode, m_use_logger);
+  main_frame->UpdateGameList();
+
   SetTopWindow(main_frame);
 
   AfterInit();
-
-  //BEGIN POST INITALIZTION ROUTINE
-  CFrame* f = wxGetApp().GetCFrame();
-  f->OnNetPlay(wxCommandEvent());
-
+  if (MeleeNET::getNetplay() && MeleeNET::is_host == false) {
+	  int netplayAnswer =
+		  wxMessageBox("You are about to connect to Netplay lobby " + MeleeNET::getNetplayCode() + ". Confirm?", "Netplay Confirmation", wxYES_NO, main_frame);
+	  if (netplayAnswer == wxYES) {
+		  //Connect to netplay code
+		  CFrame* f = wxGetApp().GetCFrame();
+		  f->OnNetPlay(wxCommandEvent());
+	  }
+  }
+  else if (MeleeNET::getNetplay() && MeleeNET::is_host == true) {
+	  int netplayAnswer =
+		  wxMessageBox("You are about to host a Netplay lobby. Confirm?", "Netplay Confirmation", wxYES_NO, main_frame);
+	  if (netplayAnswer == wxYES) {
+		  //Host code
+		  main_frame->UpdateGameList();
+		  CFrame* f = wxGetApp().GetCFrame();
+		  f->OnNetPlay(wxCommandEvent());
+	  }
+  }
   return true;
 }
 
@@ -219,9 +236,7 @@ void DolphinApp::MacOpenFile(const wxString& fileName)
 
 void DolphinApp::AfterInit()
 {
-  if (!m_batch_mode)
-    main_frame->UpdateGameList();
-
+  //int netplayAnswer;
   if (!SConfig::GetInstance().m_analytics_permission_asked)
   {
     int answer =
@@ -238,12 +253,17 @@ void DolphinApp::AfterInit()
                        "developers?"),
                      _("Usage statistics reporting"), wxYES_NO, main_frame);
 
+
     SConfig::GetInstance().m_analytics_permission_asked = true;
     SConfig::GetInstance().m_analytics_enabled = (answer == wxYES);
     SConfig::GetInstance().SaveSettings();
 
     DolphinAnalytics::Instance()->ReloadConfig();
+
+	
   }
+
+
 
 
   if (m_confirm_stop)
@@ -282,6 +302,7 @@ void DolphinApp::AfterInit()
       main_frame->BootGame("");
     }
   }
+
 }
 
 void DolphinApp::OnActivate(wxActivateEvent& ev)

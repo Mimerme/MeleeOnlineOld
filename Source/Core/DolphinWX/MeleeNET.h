@@ -22,4 +22,5 @@ class MeleeNET {
 		//Check if Dolphin boots directly into netplay
 		static bool m_netplay;
 		static wxString m_netplay_code;
+		static bool is_host;
 };

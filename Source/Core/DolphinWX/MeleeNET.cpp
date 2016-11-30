@@ -16,6 +16,7 @@
 
 bool MeleeNET::m_netplay = false;
 wxString MeleeNET::m_netplay_code = "";
+bool MeleeNET::is_host = false;
 
 void MeleeNET::HookArguments(wxCmdLineArgsArray* argv) {
 	
@@ -43,7 +44,12 @@ void MeleeNET::setNetplay(bool value) {
 }
 
 void MeleeNET::setNetplayCode(wxString value) {
-	m_netplay_code = value;
+	if (value.IsSameAs("host", false)) {
+		is_host = true;
+	}
+	else {
+		m_netplay_code = value;
+	}
 }
 
 void MeleeNET::LogToVSDebug(const char* str) {

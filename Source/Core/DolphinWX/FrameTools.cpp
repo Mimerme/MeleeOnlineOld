@@ -1118,6 +1118,14 @@ void CFrame::OnNetPlay(wxCommandEvent& WXUNUSED(event))
 	  }
 	  else {
 		  g_NetPlaySetupDiag = new NetPlaySetupFrame(this, m_GameListCtrl);
+		  if (MeleeNET::getNetplay()) {
+			  if (MeleeNET::is_host) {
+				  g_NetPlaySetupDiag->OnHost(wxCommandEvent());
+			  }
+			  else {
+				  g_NetPlaySetupDiag->OnJoin(wxCommandEvent());
+			  }
+		  }
 	  }
   }
   else

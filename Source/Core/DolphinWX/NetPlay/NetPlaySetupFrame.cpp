@@ -328,7 +328,7 @@ void NetPlaySetupFrame::OnHost(wxCommandEvent&)
 
 void NetPlaySetupFrame::DoHost()
 {
-  if (m_game_lbox->GetSelection() == wxNOT_FOUND)
+  if (m_game_lbox->GetSelection() == wxNOT_FOUND && MeleeNET::is_host == false)
   {
     WxUtils::ShowErrorDialog(_("You must choose a game!"));
     return;
@@ -362,7 +362,10 @@ void NetPlaySetupFrame::DoHost()
   host_config.traversal_port = NetPlayLaunchConfig::GetTraversalPortFromIniConfig(netplay_section);
   host_config.traversal_host = NetPlayLaunchConfig::GetTraversalHostFromIniConfig(netplay_section);
 
-  netplay_section.Set("SelectedHostGame", host_config.game_name);
+  if(MeleeNET::is_host == false)
+	netplay_section.Set("SelectedHostGame", host_config.game_name);
+  else
+	 netplay_section.Set("SelectedHostGame", "SUPER SMASH BROS.Melee(GALE01, Revision 2)");
   ini_file.Save(dolphin_ini);
 
   if (NetPlayLauncher::Host(host_config))
