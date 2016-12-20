@@ -505,7 +505,7 @@ void CFrame::OnRecordExport(wxCommandEvent& WXUNUSED(event))
 
 void CFrame::OnPlay(wxCommandEvent& WXUNUSED(event))
 {
-  if (Core::IsRunning())
+	if (Core::IsRunning())
   {
     // Core is initialized and emulator is running
     if (UseDebugger)
@@ -519,6 +519,7 @@ void CFrame::OnPlay(wxCommandEvent& WXUNUSED(event))
         g_pCodeWindow->Repopulate();
         UpdateGUI();
       }
+	  MeleeNET::createNewMemoryListener();
     }
     else
     {
@@ -565,13 +566,16 @@ void CFrame::OnRenderParentResize(wxSizeEvent& event)
   if (Core::GetState() != Core::CORE_UNINITIALIZED)
   {
     int width, height;
-    if (!SConfig::GetInstance().bRenderToMain && !RendererIsFullscreen() &&
-        !m_RenderFrame->IsMaximized() && !m_RenderFrame->IsIconized())
-    {
+    //if (!SConfig::GetInstance().bRenderToMain && !RendererIsFullscreen() &&
+    //    !m_RenderFrame->IsMaximized() && !m_RenderFrame->IsIconized())
+    //{
       m_RenderFrame->GetClientSize(&width, &height);
       SConfig::GetInstance().iRenderWindowWidth = width;
       SConfig::GetInstance().iRenderWindowHeight = height;
-    }
+	  MeleeNET::gameWindowWidth = width;
+	  MeleeNET::gameWindowHeight = height;
+
+    //}
     m_LogWindow->Refresh();
     m_LogWindow->Update();
 
@@ -647,9 +651,8 @@ void CFrame::StartGame(const std::string& filename)
         SConfig::GetInstance().iRenderWindowWidth, SConfig::GetInstance().iRenderWindowHeight);
     // Set window size in framebuffer pixels since the 3D rendering will be operating at
     // that level.
-    wxSize default_size{wxSize(640, 480) * (1.0 / GetContentScaleFactor())};
+    wxSize default_size{wxSize(1000, 480) * (1.0 / GetContentScaleFactor())};
     m_RenderFrame = new CRenderFrame(this, wxID_ANY, _("Dolphin"), wxDefaultPosition, default_size);
-
     // Convert ClientSize coordinates to frame sizes.
     wxSize decoration_fudge = m_RenderFrame->GetSize() - m_RenderFrame->GetClientSize();
     default_size += decoration_fudge;
@@ -723,6 +726,7 @@ void CFrame::StartGame(const std::string& filename)
     wxTheApp->Bind(wxEVT_MOTION, &CFrame::OnMouse, this);
     m_RenderParent->Bind(wxEVT_SIZE, &CFrame::OnRenderParentResize, this);
   }
+  MeleeNET::setDebug(&PowerPC::debug_interface);
 }
 
 void CFrame::OnBootDrive(wxCommandEvent& event)

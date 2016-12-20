@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <iostream>
 #include <sstream>
-
+#include <thread>  
 #include "wx/event.h"       // for the base class
 #include "wx/eventfilter.h" // (and another one)
 #include "wx/build.h"
@@ -17,6 +17,11 @@
 bool MeleeNET::m_netplay = false;
 wxString MeleeNET::m_netplay_code = "";
 bool MeleeNET::is_host = false;
+DebugInterface* MeleeNET::debugInterface = NULL;
+MeleeNETFrame* MeleeNET::meleeFrame = NULL;
+int MeleeNET::gameWindowWidth = 800;
+int MeleeNET::gameWindowHeight = 600;
+bool MeleeNET::uiActive = false;
 
 void MeleeNET::HookArguments(wxCmdLineArgsArray* argv) {
 	
@@ -34,7 +39,6 @@ wxString MeleeNET::getNetplayCode() {
 	return m_netplay_code;
 }
 
-
 bool MeleeNET::getNetplay() {
 	return m_netplay;
 }
@@ -50,6 +54,14 @@ void MeleeNET::setNetplayCode(wxString value) {
 	else {
 		m_netplay_code = value;
 	}
+}
+
+void MeleeNET::memoryPolling() {
+	
+}
+
+void MeleeNET::createNewMemoryListener() {
+	new CheckMemory();
 }
 
 void MeleeNET::LogToVSDebug(const char* str) {

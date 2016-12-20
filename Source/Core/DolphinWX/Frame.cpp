@@ -66,6 +66,7 @@
 #include "VideoCommon/RenderBase.h"
 #include "VideoCommon/VertexShaderManager.h"
 #include "VideoCommon/VideoConfig.h"
+#include "MeleeNET.h"
 
 #if defined(HAVE_X11) && HAVE_X11
 // X11Utils nastiness that's only used here
@@ -1269,7 +1270,8 @@ void CFrame::ParseHotkeys()
   {
     return;
   }
-
+  if (IsHotkey(HK_MELEE_TEST))
+	  MeleeNET::uiActive = !MeleeNET::uiActive;
   // Toggle fullscreen
   if (IsHotkey(HK_FULLSCREEN))
     DoFullscreen(!RendererIsFullscreen());

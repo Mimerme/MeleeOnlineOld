@@ -222,6 +222,7 @@
       <Filter>GUI\Widgets</Filter>
     </ClCompile>
     <ClCompile Include="MeleeNET.cpp" />
+    <ClCompile Include="MeleeNETFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -406,6 +407,7 @@
       <Filter>GUI\Widgets</Filter>
     </ClInclude>
     <ClInclude Include="MeleeNET.h" />
+    <ClInclude Include="MeleeNETFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

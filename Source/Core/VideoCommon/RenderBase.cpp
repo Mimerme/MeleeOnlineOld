@@ -50,6 +50,7 @@
 #include "VideoCommon/TextureCacheBase.h"
 #include "VideoCommon/VideoConfig.h"
 #include "VideoCommon/XFMemory.h"
+#include "DolphinWX/MeleeNET.h"
 
 // TODO: Move these out of here.
 int frameCount;
@@ -309,7 +310,6 @@ void Renderer::SetScreenshot(const std::string& filename)
 void Renderer::DrawDebugText()
 {
   std::string final_yellow, final_cyan;
-
   if (g_ActiveConfig.bShowFPS || SConfig::GetInstance().m_ShowFrameCount)
   {
     if (g_ActiveConfig.bShowFPS)
@@ -445,6 +445,9 @@ void Renderer::DrawDebugText()
   // and then the text
   g_renderer->RenderText(final_cyan, 20, 20, 0xFF00FFFF);
   g_renderer->RenderText(final_yellow, 20, 20, 0xFFFFFF00);
+
+  //Hook into the MeleeNET UI Render
+  MeleeNET::renderUI(g_renderer);
 }
 
 void Renderer::UpdateDrawRectangle(int backbuffer_width, int backbuffer_height)

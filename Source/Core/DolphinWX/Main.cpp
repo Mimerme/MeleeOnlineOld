@@ -56,6 +56,7 @@
 
 //MeleeNET Hook
 #include "MeleeNET.h"
+#include "MeleeNETFrame.h"
 
 #if defined HAVE_X11 && HAVE_X11
 #include <X11/Xlib.h>
@@ -133,6 +134,12 @@ bool DolphinApp::OnInit()
   SetTopWindow(main_frame);
 
   AfterInit();
+  
+  MeleeNETFrame* f = new MeleeNETFrame(main_frame);
+  MeleeNET::setFrame(f);
+  MeleeNET::meleeFrame->Show(true);
+
+
   if (MeleeNET::getNetplay() && MeleeNET::is_host == false) {
 	  int netplayAnswer =
 		  wxMessageBox("You are about to connect to Netplay lobby " + MeleeNET::getNetplayCode() + ". Confirm?", "Netplay Confirmation", wxYES_NO, main_frame);

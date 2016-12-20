@@ -10,6 +10,9 @@
 
 enum Hotkey
 {
+  //MELEE NET Hotkeys
+  HK_MELEE_TEST,
+
   HK_OPEN,
   HK_CHANGE_DISC,
   HK_REFRESH_LIST,

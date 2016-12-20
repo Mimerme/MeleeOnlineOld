@@ -11,6 +11,7 @@
 #include "InputCommon/GCPadStatus.h"
 
 const std::string hotkey_labels[] = {
+	_trans("Melee"),
     _trans("Open"),
     _trans("Change Disc"),
     _trans("Refresh List"),
