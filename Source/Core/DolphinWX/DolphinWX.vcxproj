@@ -93,6 +93,7 @@
     <ClCompile Include="DolphinSlider.cpp" />
     <ClCompile Include="MeleeNET.cpp" />
     <ClCompile Include="MeleeNETFrame.cpp" />
+    <ClCompile Include="MeleeNETUI.cpp" />
     <ClCompile Include="NetPlay\ChangeGameDialog.cpp" />
     <ClCompile Include="NetPlay\MD5Dialog.cpp" />
     <ClCompile Include="NetPlay\NetPlayLauncher.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="DolphinSlider.h" />
     <ClInclude Include="MeleeNET.h" />
     <ClInclude Include="MeleeNETFrame.h" />
+    <ClInclude Include="MeleeNETUI.h" />
     <ClInclude Include="NetPlay\ChangeGameDialog.h" />
     <ClInclude Include="NetPlay\MD5Dialog.h" />
     <ClInclude Include="NetPlay\NetPlayLauncher.h" />

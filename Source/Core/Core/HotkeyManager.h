@@ -12,6 +12,9 @@ enum Hotkey
 {
   //MELEE NET Hotkeys
   HK_MELEE_TEST,
+  HK_MELEE_DOWN,
+  HK_MELEE_UP,
+  HK_MELEE_SELECT,
 
   HK_OPEN,
   HK_CHANGE_DISC,

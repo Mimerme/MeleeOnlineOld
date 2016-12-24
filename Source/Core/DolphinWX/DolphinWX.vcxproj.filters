@@ -223,6 +223,7 @@
     </ClCompile>
     <ClCompile Include="MeleeNET.cpp" />
     <ClCompile Include="MeleeNETFrame.cpp" />
+    <ClCompile Include="MeleeNETUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -408,6 +409,7 @@
     </ClInclude>
     <ClInclude Include="MeleeNET.h" />
     <ClInclude Include="MeleeNETFrame.h" />
+    <ClInclude Include="MeleeNETUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

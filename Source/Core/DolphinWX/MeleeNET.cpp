@@ -1,7 +1,8 @@
 //Base code for Melee.net
 
 //Parse arguments
-#include "MeleeNET.h"
+#include "MeleeNETUI.h"
+
 #include <Windows.h>
 #include <iostream>
 #include <sstream>
@@ -19,9 +20,6 @@ wxString MeleeNET::m_netplay_code = "";
 bool MeleeNET::is_host = false;
 DebugInterface* MeleeNET::debugInterface = NULL;
 MeleeNETFrame* MeleeNET::meleeFrame = NULL;
-int MeleeNET::gameWindowWidth = 800;
-int MeleeNET::gameWindowHeight = 600;
-bool MeleeNET::uiActive = false;
 
 void MeleeNET::HookArguments(wxCmdLineArgsArray* argv) {
 	

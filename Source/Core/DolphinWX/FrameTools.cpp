@@ -83,6 +83,7 @@
 #include "VideoCommon/VideoBackendBase.h"
 #include "VideoCommon/VideoConfig.h"
 #include "MeleeNET.h"
+#include "MeleeNETUI.h"
 
 class InputConfig;
 class wxFrame;
@@ -572,8 +573,8 @@ void CFrame::OnRenderParentResize(wxSizeEvent& event)
       m_RenderFrame->GetClientSize(&width, &height);
       SConfig::GetInstance().iRenderWindowWidth = width;
       SConfig::GetInstance().iRenderWindowHeight = height;
-	  MeleeNET::gameWindowWidth = width;
-	  MeleeNET::gameWindowHeight = height;
+	  MeleeNETUI::gameWindowWidth = width;
+	  MeleeNETUI::gameWindowHeight = height;
 
     //}
     m_LogWindow->Refresh();

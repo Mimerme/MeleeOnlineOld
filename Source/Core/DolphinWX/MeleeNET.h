@@ -37,13 +37,6 @@
 #include "VideoCommon/VideoConfig.h"
 class MeleeNET {
 	public:
-		//UI Variables
-		static int gameWindowWidth, gameWindowHeight;
-		static bool uiActive;
-		static wxString* menuOptions;
-		static void drawMenu();
-		static int activeOption;
-
 
 		static void HookArguments(wxCmdLineArgsArray* argv);
 		static void LogToVSDebug(const char *string);
@@ -65,14 +58,6 @@ class MeleeNET {
 
 		static void createNewMemoryListener();
 		static void memoryPolling();
-		static void renderUI(std::unique_ptr<Renderer> &rend) {
-			MeleeNET::LogToVSDebug("rendering");
-			g_renderer->RenderText("Melee.NET Hook!", gameWindowWidth - 150, 20, 0xffffffff);
-			g_renderer->RenderText("By Mimerme :D", gameWindowWidth - 130, 40, 0xffffffff);
-			g_renderer->RenderText(">Test Element 1", gameWindowWidth - 150, 60, 0xffffffff);
-			g_renderer->RenderText("Test Element 2", gameWindowWidth - 140, 80, 0xffffffff);;
-			g_renderer->RenderText("Look for netplay game", gameWindowWidth - 200, 100, 0xffffffff);;
-		}
 
 		//Why the fuck do these addresses change with every version of Dolphin
 		//static const int player1DamageAddress = 0x004a10d0;

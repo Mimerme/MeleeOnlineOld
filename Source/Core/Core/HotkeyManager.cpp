@@ -11,7 +11,11 @@
 #include "InputCommon/GCPadStatus.h"
 
 const std::string hotkey_labels[] = {
-	_trans("Melee"),
+	_trans("MeleeNET Activate Hook"),
+	_trans("MeleeNET Down"),
+	_trans("MeleeNET Up"),
+	_trans("MeleeNET Select"),
+
     _trans("Open"),
     _trans("Change Disc"),
     _trans("Refresh List"),

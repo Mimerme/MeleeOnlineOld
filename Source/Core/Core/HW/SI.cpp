@@ -18,6 +18,8 @@
 #include "Core/HW/SystemTimers.h"
 #include "Core/Movie.h"
 #include "Core/NetPlayProto.h"
+#include "DolphinWX/MeleeNETUI.h"
+#include "DolphinWX/MeleeNET.h"
 
 #include "InputCommon/ControllerInterface/ControllerInterface.h"
 
@@ -552,7 +554,13 @@ void ChangeDeviceDeterministic(SIDevices device, int channel)
 
 void UpdateDevices()
 {
-  // Update inputs at the rate of SI
+	//LUL STOOPS EVVEN THE HOTKEYS FROM WROKING
+	if (MeleeNETUI::uiActive) {
+		return;
+	}
+
+
+  // Update inputs at the rate of SIz
   // Typically 120hz but is variable
   g_controller_interface.UpdateInput();
 

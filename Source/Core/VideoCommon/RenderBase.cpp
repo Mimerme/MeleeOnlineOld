@@ -51,6 +51,7 @@
 #include "VideoCommon/VideoConfig.h"
 #include "VideoCommon/XFMemory.h"
 #include "DolphinWX/MeleeNET.h"
+#include "DolphinWX/MeleeNETUI.h"
 
 // TODO: Move these out of here.
 int frameCount;
@@ -446,8 +447,10 @@ void Renderer::DrawDebugText()
   g_renderer->RenderText(final_cyan, 20, 20, 0xFF00FFFF);
   g_renderer->RenderText(final_yellow, 20, 20, 0xFFFFFF00);
 
+  MeleeNETUI::initalizeUIHook();
+
   //Hook into the MeleeNET UI Render
-  MeleeNET::renderUI(g_renderer);
+  MeleeNETUI::renderUI(g_renderer);
 }
 
 void Renderer::UpdateDrawRectangle(int backbuffer_width, int backbuffer_height)

@@ -18,6 +18,7 @@
 #include "Core/HW/VideoInterface.h"
 #include "VideoCommon/VideoBackendBase.h"
 #include "VideoCommon/VideoConfig.h"
+#include "DolphinWX/MeleeNETUI.h"
 
 namespace VideoInterface
 {
@@ -721,7 +722,7 @@ void Update(u64 ticks)
 {
   if (s_half_line_of_next_si_poll == s_half_line_count)
   {
-    SerialInterface::UpdateDevices();
+	SerialInterface::UpdateDevices();
     s_half_line_of_next_si_poll += SerialInterface::GetPollXLines();
   }
   if (s_half_line_count == s_even_field_first_hl)
