@@ -109,6 +109,7 @@ public:
   static void DrawDebugText();
 
   virtual void RenderText(const std::string& text, int left, int top, u32 color) = 0;
+  virtual void RenderRect() = 0;
 
   virtual void ClearScreen(const EFBRectangle& rc, bool colorEnable, bool alphaEnable, bool zEnable,
                            u32 color, u32 z) = 0;

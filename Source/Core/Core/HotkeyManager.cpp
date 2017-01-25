@@ -15,124 +15,11 @@ const std::string hotkey_labels[] = {
 	_trans("MeleeNET Down"),
 	_trans("MeleeNET Up"),
 	_trans("MeleeNET Select"),
-
-    _trans("Open"),
-    _trans("Change Disc"),
-    _trans("Refresh List"),
-
-    _trans("Toggle Pause"),
-    _trans("Stop"),
-    _trans("Reset"),
-    _trans("Frame Advance"),
-    _trans("Frame Advance Decrease Speed"),
-    _trans("Frame Advance Increase Speed"),
-    _trans("Frame Advance Reset Speed"),
-
-    _trans("Start Recording"),
-    _trans("Play Recording"),
-    _trans("Export Recording"),
-    _trans("Read-only mode"),
+	_trans("MeleeNET Back"),
 
     _trans("Toggle Fullscreen"),
     _trans("Take Screenshot"),
     _trans("Exit"),
-
-    _trans("Press Sync Button"),
-    _trans("Connect Wii Remote 1"),
-    _trans("Connect Wii Remote 2"),
-    _trans("Connect Wii Remote 3"),
-    _trans("Connect Wii Remote 4"),
-    _trans("Connect Balance Board"),
-
-    _trans("Volume Down"),
-    _trans("Volume Up"),
-    _trans("Volume Toggle Mute"),
-
-    _trans("Increase IR"),
-    _trans("Decrease IR"),
-
-    _trans("Toggle Crop"),
-    _trans("Toggle Aspect Ratio"),
-    _trans("Toggle EFB Copies"),
-    _trans("Toggle Fog"),
-    _trans("Disable Emulation Speed Limit"),
-    _trans("Toggle Custom Textures"),
-    _trans("Decrease Emulation Speed"),
-    _trans("Increase Emulation Speed"),
-
-    _trans("Freelook Decrease Speed"),
-    _trans("Freelook Increase Speed"),
-    _trans("Freelook Reset Speed"),
-    _trans("Freelook Move Up"),
-    _trans("Freelook Move Down"),
-    _trans("Freelook Move Left"),
-    _trans("Freelook Move Right"),
-    _trans("Freelook Zoom In"),
-    _trans("Freelook Zoom Out"),
-    _trans("Freelook Reset"),
-
-    _trans("Toggle 3D Side-by-side"),
-    _trans("Toggle 3D Top-bottom"),
-    _trans("Toggle 3D Anaglyph"),
-    _trans("Toggle 3D Vision"),
-
-    _trans("Decrease Depth"),
-    _trans("Increase Depth"),
-    _trans("Decrease Convergence"),
-    _trans("Increase Convergence"),
-
-    _trans("Load State Slot 1"),
-    _trans("Load State Slot 2"),
-    _trans("Load State Slot 3"),
-    _trans("Load State Slot 4"),
-    _trans("Load State Slot 5"),
-    _trans("Load State Slot 6"),
-    _trans("Load State Slot 7"),
-    _trans("Load State Slot 8"),
-    _trans("Load State Slot 9"),
-    _trans("Load State Slot 10"),
-
-    _trans("Save State Slot 1"),
-    _trans("Save State Slot 2"),
-    _trans("Save State Slot 3"),
-    _trans("Save State Slot 4"),
-    _trans("Save State Slot 5"),
-    _trans("Save State Slot 6"),
-    _trans("Save State Slot 7"),
-    _trans("Save State Slot 8"),
-    _trans("Save State Slot 9"),
-    _trans("Save State Slot 10"),
-
-    _trans("Select State Slot 1"),
-    _trans("Select State Slot 2"),
-    _trans("Select State Slot 3"),
-    _trans("Select State Slot 4"),
-    _trans("Select State Slot 5"),
-    _trans("Select State Slot 6"),
-    _trans("Select State Slot 7"),
-    _trans("Select State Slot 8"),
-    _trans("Select State Slot 9"),
-    _trans("Select State Slot 10"),
-
-    _trans("Save to selected slot"),
-    _trans("Load from selected slot"),
-
-    _trans("Load State Last 1"),
-    _trans("Load State Last 2"),
-    _trans("Load State Last 3"),
-    _trans("Load State Last 4"),
-    _trans("Load State Last 5"),
-    _trans("Load State Last 6"),
-    _trans("Load State Last 7"),
-    _trans("Load State Last 8"),
-    _trans("Load State Last 9"),
-    _trans("Load State Last 10"),
-
-    _trans("Save Oldest State"),
-    _trans("Undo Load State"),
-    _trans("Undo Save State"),
-    _trans("Save State"),
-    _trans("Load State"),
 };
 static_assert(NUM_HOTKEYS == sizeof(hotkey_labels) / sizeof(hotkey_labels[0]),
               "Wrong count of hotkey_labels");
@@ -276,48 +163,10 @@ void HotkeyManager::LoadDefaults(const ControllerInterface& ciface)
     m_keys[index / 32]->controls[index % 32]->control_ref->expression = expression;
   };
 
-  // General hotkeys
-  set_key_expression(HK_OPEN, CTRL + " & O");
-  set_key_expression(HK_PLAY_PAUSE, "`F10`");
-#ifdef _WIN32
-  set_key_expression(HK_STOP, "ESCAPE");
-  set_key_expression(HK_FULLSCREEN, ALT + " & RETURN");
-#else
-  set_key_expression(HK_STOP, "Escape");
-  set_key_expression(HK_FULLSCREEN, ALT + " & Return");
-#endif
-  set_key_expression(HK_SCREENSHOT, NON + " & `F9`");
-  set_key_expression(HK_WIIMOTE1_CONNECT, ALT + " & `F5`");
-  set_key_expression(HK_WIIMOTE2_CONNECT, ALT + " & `F6`");
-  set_key_expression(HK_WIIMOTE3_CONNECT, ALT + " & `F7`");
-  set_key_expression(HK_WIIMOTE4_CONNECT, ALT + " & `F8`");
-  set_key_expression(HK_BALANCEBOARD_CONNECT, ALT + " & `F9`");
-#ifdef _WIN32
-  set_key_expression(HK_TOGGLE_THROTTLE, "TAB");
-#else
-  set_key_expression(HK_TOGGLE_THROTTLE, "Tab");
-#endif
+  set_key_expression(HK_MELEE_TEST, "F1");
+  set_key_expression(HK_MELEE_SELECT, "RETURN");
+  set_key_expression(HK_MELEE_UP, "UP");
+  set_key_expression(HK_MELEE_DOWN, "DOWN");
 
-  // Freelook
-  set_key_expression(HK_FREELOOK_DECREASE_SPEED, SHIFT + " & `1`");
-  set_key_expression(HK_FREELOOK_INCREASE_SPEED, SHIFT + " & `2`");
-  set_key_expression(HK_FREELOOK_RESET_SPEED, SHIFT + " & F");
-  set_key_expression(HK_FREELOOK_UP, SHIFT + " & E");
-  set_key_expression(HK_FREELOOK_DOWN, SHIFT + " & Q");
-  set_key_expression(HK_FREELOOK_LEFT, SHIFT + " & A");
-  set_key_expression(HK_FREELOOK_RIGHT, SHIFT + " & D");
-  set_key_expression(HK_FREELOOK_ZOOM_IN, SHIFT + " & W");
-  set_key_expression(HK_FREELOOK_ZOOM_OUT, SHIFT + " & S");
-  set_key_expression(HK_FREELOOK_RESET, SHIFT + " & R");
 
-  // Savestates
-  for (int i = 0; i < 8; i++)
-  {
-    set_key_expression(HK_LOAD_STATE_SLOT_1 + i,
-                       StringFromFormat((NON + " & `F%d`").c_str(), i + 1));
-    set_key_expression(HK_SAVE_STATE_SLOT_1 + i,
-                       StringFromFormat((SHIFT + " & `F%d`").c_str(), i + 1));
-  }
-  set_key_expression(HK_UNDO_LOAD_STATE, NON + " & `F12`");
-  set_key_expression(HK_UNDO_SAVE_STATE, SHIFT + " & `F12`");
 }

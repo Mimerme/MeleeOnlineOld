@@ -859,27 +859,6 @@ static int GetMenuIDFromHotkey(unsigned int key)
 {
   switch (key)
   {
-  case HK_OPEN:
-    return wxID_OPEN;
-  case HK_CHANGE_DISC:
-    return IDM_CHANGE_DISC;
-  case HK_REFRESH_LIST:
-    return wxID_REFRESH;
-  case HK_PLAY_PAUSE:
-    return IDM_PLAY;
-  case HK_STOP:
-    return IDM_STOP;
-  case HK_RESET:
-    return IDM_RESET;
-  case HK_FRAME_ADVANCE:
-    return IDM_FRAMESTEP;
-  case HK_START_RECORDING:
-    return IDM_RECORD;
-  case HK_PLAY_RECORDING:
-    return IDM_PLAY_RECORD;
-  case HK_EXPORT_RECORDING:
-    return IDM_RECORD_EXPORT;
-  case HK_READ_ONLY_MODE:
     return IDM_RECORD_READ_ONLY;
   case HK_FULLSCREEN:
     return IDM_TOGGLE_FULLSCREEN;
@@ -888,136 +867,6 @@ static int GetMenuIDFromHotkey(unsigned int key)
   case HK_EXIT:
     return wxID_EXIT;
 
-  case HK_WIIMOTE1_CONNECT:
-    return IDM_CONNECT_WIIMOTE1;
-  case HK_WIIMOTE2_CONNECT:
-    return IDM_CONNECT_WIIMOTE2;
-  case HK_WIIMOTE3_CONNECT:
-    return IDM_CONNECT_WIIMOTE3;
-  case HK_WIIMOTE4_CONNECT:
-    return IDM_CONNECT_WIIMOTE4;
-  case HK_BALANCEBOARD_CONNECT:
-    return IDM_CONNECT_BALANCEBOARD;
-
-  case HK_LOAD_STATE_SLOT_1:
-    return IDM_LOAD_SLOT_1;
-  case HK_LOAD_STATE_SLOT_2:
-    return IDM_LOAD_SLOT_2;
-  case HK_LOAD_STATE_SLOT_3:
-    return IDM_LOAD_SLOT_3;
-  case HK_LOAD_STATE_SLOT_4:
-    return IDM_LOAD_SLOT_4;
-  case HK_LOAD_STATE_SLOT_5:
-    return IDM_LOAD_SLOT_5;
-  case HK_LOAD_STATE_SLOT_6:
-    return IDM_LOAD_SLOT_6;
-  case HK_LOAD_STATE_SLOT_7:
-    return IDM_LOAD_SLOT_7;
-  case HK_LOAD_STATE_SLOT_8:
-    return IDM_LOAD_SLOT_8;
-  case HK_LOAD_STATE_SLOT_9:
-    return IDM_LOAD_SLOT_9;
-  case HK_LOAD_STATE_SLOT_10:
-    return IDM_LOAD_SLOT_10;
-
-  case HK_SAVE_STATE_SLOT_1:
-    return IDM_SAVE_SLOT_1;
-  case HK_SAVE_STATE_SLOT_2:
-    return IDM_SAVE_SLOT_2;
-  case HK_SAVE_STATE_SLOT_3:
-    return IDM_SAVE_SLOT_3;
-  case HK_SAVE_STATE_SLOT_4:
-    return IDM_SAVE_SLOT_4;
-  case HK_SAVE_STATE_SLOT_5:
-    return IDM_SAVE_SLOT_5;
-  case HK_SAVE_STATE_SLOT_6:
-    return IDM_SAVE_SLOT_6;
-  case HK_SAVE_STATE_SLOT_7:
-    return IDM_SAVE_SLOT_7;
-  case HK_SAVE_STATE_SLOT_8:
-    return IDM_SAVE_SLOT_8;
-  case HK_SAVE_STATE_SLOT_9:
-    return IDM_SAVE_SLOT_9;
-  case HK_SAVE_STATE_SLOT_10:
-    return IDM_SAVE_SLOT_10;
-
-  case HK_LOAD_LAST_STATE_1:
-    return IDM_LOAD_LAST_1;
-  case HK_LOAD_LAST_STATE_2:
-    return IDM_LOAD_LAST_2;
-  case HK_LOAD_LAST_STATE_3:
-    return IDM_LOAD_LAST_3;
-  case HK_LOAD_LAST_STATE_4:
-    return IDM_LOAD_LAST_4;
-  case HK_LOAD_LAST_STATE_5:
-    return IDM_LOAD_LAST_5;
-  case HK_LOAD_LAST_STATE_6:
-    return IDM_LOAD_LAST_6;
-  case HK_LOAD_LAST_STATE_7:
-    return IDM_LOAD_LAST_7;
-  case HK_LOAD_LAST_STATE_8:
-    return IDM_LOAD_LAST_8;
-  case HK_LOAD_LAST_STATE_9:
-    return IDM_LOAD_LAST_9;
-  case HK_LOAD_LAST_STATE_10:
-    return IDM_LOAD_LAST_10;
-
-  case HK_SAVE_FIRST_STATE:
-    return IDM_SAVE_FIRST_STATE;
-  case HK_UNDO_LOAD_STATE:
-    return IDM_UNDO_LOAD_STATE;
-  case HK_UNDO_SAVE_STATE:
-    return IDM_UNDO_SAVE_STATE;
-  case HK_LOAD_STATE_FILE:
-    return IDM_LOAD_STATE_FILE;
-  case HK_SAVE_STATE_FILE:
-    return IDM_SAVE_STATE_FILE;
-
-  case HK_SELECT_STATE_SLOT_1:
-    return IDM_SELECT_SLOT_1;
-  case HK_SELECT_STATE_SLOT_2:
-    return IDM_SELECT_SLOT_2;
-  case HK_SELECT_STATE_SLOT_3:
-    return IDM_SELECT_SLOT_3;
-  case HK_SELECT_STATE_SLOT_4:
-    return IDM_SELECT_SLOT_4;
-  case HK_SELECT_STATE_SLOT_5:
-    return IDM_SELECT_SLOT_5;
-  case HK_SELECT_STATE_SLOT_6:
-    return IDM_SELECT_SLOT_6;
-  case HK_SELECT_STATE_SLOT_7:
-    return IDM_SELECT_SLOT_7;
-  case HK_SELECT_STATE_SLOT_8:
-    return IDM_SELECT_SLOT_8;
-  case HK_SELECT_STATE_SLOT_9:
-    return IDM_SELECT_SLOT_9;
-  case HK_SELECT_STATE_SLOT_10:
-    return IDM_SELECT_SLOT_10;
-  case HK_SAVE_STATE_SLOT_SELECTED:
-    return IDM_SAVE_SELECTED_SLOT;
-  case HK_LOAD_STATE_SLOT_SELECTED:
-    return IDM_LOAD_SELECTED_SLOT;
-
-  case HK_FREELOOK_DECREASE_SPEED:
-    return IDM_FREELOOK_DECREASE_SPEED;
-  case HK_FREELOOK_INCREASE_SPEED:
-    return IDM_FREELOOK_INCREASE_SPEED;
-  case HK_FREELOOK_RESET_SPEED:
-    return IDM_FREELOOK_RESET_SPEED;
-  case HK_FREELOOK_LEFT:
-    return IDM_FREELOOK_LEFT;
-  case HK_FREELOOK_RIGHT:
-    return IDM_FREELOOK_RIGHT;
-  case HK_FREELOOK_UP:
-    return IDM_FREELOOK_UP;
-  case HK_FREELOOK_DOWN:
-    return IDM_FREELOOK_DOWN;
-  case HK_FREELOOK_ZOOM_IN:
-    return IDM_FREELOOK_ZOOM_IN;
-  case HK_FREELOOK_ZOOM_OUT:
-    return IDM_FREELOOK_ZOOM_OUT;
-  case HK_FREELOOK_RESET:
-    return IDM_FREELOOK_RESET;
   }
 
   return -1;
@@ -1231,46 +1080,29 @@ void CFrame::ParseHotkeys()
 {
   for (int i = 0; i < NUM_HOTKEYS; i++)
   {
-    switch (i)
-    {
-    case HK_OPEN:
-    case HK_CHANGE_DISC:
-    case HK_REFRESH_LIST:
-    case HK_RESET:
-    case HK_START_RECORDING:
-    case HK_PLAY_RECORDING:
-    case HK_EXPORT_RECORDING:
-    case HK_READ_ONLY_MODE:
-
-    case HK_LOAD_STATE_FILE:
-    case HK_SAVE_STATE_FILE:
-    case HK_LOAD_STATE_SLOT_SELECTED:
-
-      if (IsHotkey(i))
-      {
-        const int id = GetMenuIDFromHotkey(i);
-        if (id >= 0)
-        {
-          wxCommandEvent evt(wxEVT_MENU, id);
-          wxMenuItem* item = GetMenuBar()->FindItem(id);
-          if (item && item->IsCheckable())
-          {
-            item->wxMenuItemBase::Toggle();
-            evt.SetInt(item->IsChecked());
-          }
-          GetEventHandler()->AddPendingEvent(evt);
-        }
-      }
-    default:
-      break;
-      // do nothing
-    }
+	  if (IsHotkey(i))
+	  {
+		  const int id = GetMenuIDFromHotkey(i);
+		  if (id >= 0)
+		  {
+			  wxCommandEvent evt(wxEVT_MENU, id);
+			  wxMenuItem* item = GetMenuBar()->FindItem(id);
+			  if (item && item->IsCheckable())
+			  {
+				  item->wxMenuItemBase::Toggle();
+				  evt.SetInt(item->IsChecked());
+			  }
+			  GetEventHandler()->AddPendingEvent(evt);
+		  }
+	  }
   }
 
   if (!Core::IsRunningAndStarted())
   {
     return;
   }
+
+
   if (IsHotkey(HK_MELEE_TEST))
 	  MeleeNETUI::onInput(HK_MELEE_TEST);
   if (IsHotkey(HK_MELEE_DOWN))
@@ -1279,324 +1111,13 @@ void CFrame::ParseHotkeys()
 	  MeleeNETUI::onInput(HK_MELEE_UP);
   if (IsHotkey(HK_MELEE_SELECT))
 	  MeleeNETUI::onInput(HK_MELEE_SELECT);
+  if (IsHotkey(HK_MELEE_BACK))
+	  MeleeNETUI::onInput(HK_MELEE_BACK);
+
   // Toggle fullscreen
   if (IsHotkey(HK_FULLSCREEN))
     DoFullscreen(!RendererIsFullscreen());
-  // Pause and Unpause
-  if (IsHotkey(HK_PLAY_PAUSE))
-    DoPause();
-  // Frame advance
-  HandleFrameSkipHotkeys();
-  // Stop
-  if (IsHotkey(HK_STOP))
-    DoStop();
-  // Screenshot hotkey
-  if (IsHotkey(HK_SCREENSHOT))
-    Core::SaveScreenShot();
-  if (IsHotkey(HK_EXIT))
-    wxPostEvent(this, wxCommandEvent(wxEVT_MENU, wxID_EXIT));
-  if (IsHotkey(HK_VOLUME_DOWN))
-    AudioCommon::DecreaseVolume(3);
-  if (IsHotkey(HK_VOLUME_UP))
-    AudioCommon::IncreaseVolume(3);
-  if (IsHotkey(HK_VOLUME_TOGGLE_MUTE))
-    AudioCommon::ToggleMuteVolume();
-
-  if (SConfig::GetInstance().m_bt_passthrough_enabled)
-  {
-    auto device = WII_IPC_HLE_Interface::GetDeviceByName("/dev/usb/oh1/57e/305");
-    if (device != nullptr)
-      std::static_pointer_cast<CWII_IPC_HLE_Device_usb_oh1_57e_305_base>(device)
-          ->UpdateSyncButtonState(IsHotkey(HK_TRIGGER_SYNC_BUTTON, true));
-  }
-
-  // Wiimote connect and disconnect hotkeys
-  int WiimoteId = -1;
-  if (IsHotkey(HK_WIIMOTE1_CONNECT))
-    WiimoteId = 0;
-  if (IsHotkey(HK_WIIMOTE2_CONNECT))
-    WiimoteId = 1;
-  if (IsHotkey(HK_WIIMOTE3_CONNECT))
-    WiimoteId = 2;
-  if (IsHotkey(HK_WIIMOTE4_CONNECT))
-    WiimoteId = 3;
-  if (IsHotkey(HK_BALANCEBOARD_CONNECT))
-    WiimoteId = 4;
-
-  // Actually perform the Wiimote connection or disconnection
-  if (WiimoteId >= 0 && SConfig::GetInstance().bWii)
-  {
-    wxCommandEvent evt;
-    evt.SetId(IDM_CONNECT_WIIMOTE1 + WiimoteId);
-    OnConnectWiimote(evt);
-  }
-
-  if (IsHotkey(HK_INCREASE_IR))
-  {
-    OSDChoice = 1;
-    ++g_Config.iEFBScale;
-  }
-  if (IsHotkey(HK_DECREASE_IR))
-  {
-    OSDChoice = 1;
-    if (--g_Config.iEFBScale < SCALE_AUTO)
-      g_Config.iEFBScale = SCALE_AUTO;
-  }
-  if (IsHotkey(HK_TOGGLE_CROP))
-  {
-    g_Config.bCrop = !g_Config.bCrop;
-  }
-  if (IsHotkey(HK_TOGGLE_AR))
-  {
-    OSDChoice = 2;
-    // Toggle aspect ratio
-    g_Config.iAspectRatio = (g_Config.iAspectRatio + 1) & 3;
-  }
-  if (IsHotkey(HK_TOGGLE_EFBCOPIES))
-  {
-    OSDChoice = 3;
-    // Toggle EFB copies between EFB2RAM and EFB2Texture
-    g_Config.bSkipEFBCopyToRam = !g_Config.bSkipEFBCopyToRam;
-  }
-  if (IsHotkey(HK_TOGGLE_FOG))
-  {
-    OSDChoice = 4;
-    g_Config.bDisableFog = !g_Config.bDisableFog;
-  }
-  if (IsHotkey(HK_TOGGLE_TEXTURES))
-    g_Config.bHiresTextures = !g_Config.bHiresTextures;
-  Core::SetIsThrottlerTempDisabled(IsHotkey(HK_TOGGLE_THROTTLE, true));
-  if (IsHotkey(HK_DECREASE_EMULATION_SPEED))
-  {
-    OSDChoice = 5;
-
-    if (SConfig::GetInstance().m_EmulationSpeed <= 0.0f)
-      SConfig::GetInstance().m_EmulationSpeed = 1.0f;
-    else if (SConfig::GetInstance().m_EmulationSpeed >= 0.2f)
-      SConfig::GetInstance().m_EmulationSpeed -= 0.1f;
-    else
-      SConfig::GetInstance().m_EmulationSpeed = 0.1f;
-
-    if (SConfig::GetInstance().m_EmulationSpeed >= 0.95f &&
-        SConfig::GetInstance().m_EmulationSpeed <= 1.05f)
-      SConfig::GetInstance().m_EmulationSpeed = 1.0f;
-  }
-  if (IsHotkey(HK_INCREASE_EMULATION_SPEED))
-  {
-    OSDChoice = 5;
-
-    if (SConfig::GetInstance().m_EmulationSpeed > 0.0f)
-      SConfig::GetInstance().m_EmulationSpeed += 0.1f;
-
-    if (SConfig::GetInstance().m_EmulationSpeed >= 0.95f &&
-        SConfig::GetInstance().m_EmulationSpeed <= 1.05f)
-      SConfig::GetInstance().m_EmulationSpeed = 1.0f;
-  }
-  if (IsHotkey(HK_SAVE_STATE_SLOT_SELECTED))
-  {
-    State::Save(m_saveSlot);
-  }
-  if (IsHotkey(HK_LOAD_STATE_SLOT_SELECTED))
-  {
-    State::Load(m_saveSlot);
-  }
-
-  if (IsHotkey(HK_TOGGLE_STEREO_SBS))
-  {
-    if (g_Config.iStereoMode != STEREO_SBS)
-    {
-      // Current implementation of anaglyph stereoscopy uses a
-      // post-processing shader. Thus the shader needs to be to be
-      // turned off when selecting other stereoscopy modes.
-      if (g_Config.sPostProcessingShader == "dubois")
-      {
-        g_Config.sPostProcessingShader = "";
-      }
-      g_Config.iStereoMode = STEREO_SBS;
-    }
-    else
-    {
-      g_Config.iStereoMode = STEREO_OFF;
-    }
-  }
-  if (IsHotkey(HK_TOGGLE_STEREO_TAB))
-  {
-    if (g_Config.iStereoMode != STEREO_TAB)
-    {
-      if (g_Config.sPostProcessingShader == "dubois")
-      {
-        g_Config.sPostProcessingShader = "";
-      }
-      g_Config.iStereoMode = STEREO_TAB;
-    }
-    else
-    {
-      g_Config.iStereoMode = STEREO_OFF;
-    }
-  }
-  if (IsHotkey(HK_TOGGLE_STEREO_ANAGLYPH))
-  {
-    if (g_Config.iStereoMode != STEREO_ANAGLYPH)
-    {
-      // Setting the anaglyph mode also requires a specific
-      // post-processing shader to be activated.
-      g_Config.iStereoMode = STEREO_ANAGLYPH;
-      g_Config.sPostProcessingShader = "dubois";
-    }
-    else
-    {
-      g_Config.iStereoMode = STEREO_OFF;
-      g_Config.sPostProcessingShader = "";
-    }
-  }
-  if (IsHotkey(HK_TOGGLE_STEREO_3DVISION))
-  {
-    if (g_Config.iStereoMode != STEREO_3DVISION)
-    {
-      if (g_Config.sPostProcessingShader == "dubois")
-      {
-        g_Config.sPostProcessingShader = "";
-      }
-      g_Config.iStereoMode = STEREO_3DVISION;
-    }
-    else
-    {
-      g_Config.iStereoMode = STEREO_OFF;
-    }
-  }
-
-  if (IsHotkey(HK_DECREASE_DEPTH, true))
-  {
-    if (--g_Config.iStereoDepth < 0)
-      g_Config.iStereoDepth = 0;
-  }
-  if (IsHotkey(HK_INCREASE_DEPTH, true))
-  {
-    if (++g_Config.iStereoDepth > 100)
-      g_Config.iStereoDepth = 100;
-  }
-  if (IsHotkey(HK_DECREASE_CONVERGENCE, true))
-  {
-    g_Config.iStereoConvergence -= 5;
-    if (g_Config.iStereoConvergence < 0)
-      g_Config.iStereoConvergence = 0;
-  }
-  if (IsHotkey(HK_INCREASE_CONVERGENCE, true))
-  {
-    g_Config.iStereoConvergence += 5;
-    if (g_Config.iStereoConvergence > 500)
-      g_Config.iStereoConvergence = 500;
-  }
-
-  static float debugSpeed = 1.0f;
-  if (IsHotkey(HK_FREELOOK_DECREASE_SPEED, true))
-    debugSpeed /= 1.1f;
-  if (IsHotkey(HK_FREELOOK_INCREASE_SPEED, true))
-    debugSpeed *= 1.1f;
-  if (IsHotkey(HK_FREELOOK_RESET_SPEED, true))
-    debugSpeed = 1.0f;
-  if (IsHotkey(HK_FREELOOK_UP, true))
-    VertexShaderManager::TranslateView(0.0f, 0.0f, -debugSpeed);
-  if (IsHotkey(HK_FREELOOK_DOWN, true))
-    VertexShaderManager::TranslateView(0.0f, 0.0f, debugSpeed);
-  if (IsHotkey(HK_FREELOOK_LEFT, true))
-    VertexShaderManager::TranslateView(debugSpeed, 0.0f);
-  if (IsHotkey(HK_FREELOOK_RIGHT, true))
-    VertexShaderManager::TranslateView(-debugSpeed, 0.0f);
-  if (IsHotkey(HK_FREELOOK_ZOOM_IN, true))
-    VertexShaderManager::TranslateView(0.0f, debugSpeed);
-  if (IsHotkey(HK_FREELOOK_ZOOM_OUT, true))
-    VertexShaderManager::TranslateView(0.0f, -debugSpeed);
-  if (IsHotkey(HK_FREELOOK_RESET, true))
-    VertexShaderManager::ResetView();
-
-  // Savestates
-  for (u32 i = 0; i < State::NUM_STATES; i++)
-  {
-    if (IsHotkey(HK_LOAD_STATE_SLOT_1 + i))
-      State::Load(1 + i);
-
-    if (IsHotkey(HK_SAVE_STATE_SLOT_1 + i))
-      State::Save(1 + i);
-
-    if (IsHotkey(HK_LOAD_LAST_STATE_1 + i))
-      State::LoadLastSaved(1 + i);
-
-    if (IsHotkey(HK_SELECT_STATE_SLOT_1 + i))
-    {
-      wxCommandEvent slot_event;
-      slot_event.SetId(IDM_SELECT_SLOT_1 + i);
-      CFrame::OnSelectSlot(slot_event);
-    }
-  }
-  if (IsHotkey(HK_SAVE_FIRST_STATE))
-    State::SaveFirstSaved();
-  if (IsHotkey(HK_UNDO_LOAD_STATE))
-    State::UndoLoadState();
-  if (IsHotkey(HK_UNDO_SAVE_STATE))
-    State::UndoSaveState();
-}
-
-void CFrame::HandleFrameSkipHotkeys()
-{
-  static const int MAX_FRAME_SKIP_DELAY = 60;
-  static int frameStepCount = 0;
-  static const int FRAME_STEP_DELAY = 30;
-  static int holdFrameStepDelay = 1;
-  static int holdFrameStepDelayCount = 0;
-  static bool holdFrameStep = false;
-
-  if (IsHotkey(HK_FRAME_ADVANCE_DECREASE_SPEED))
-  {
-    ++holdFrameStepDelay;
-    if (holdFrameStepDelay > MAX_FRAME_SKIP_DELAY)
-      holdFrameStepDelay = MAX_FRAME_SKIP_DELAY;
-  }
-  else if (IsHotkey(HK_FRAME_ADVANCE_INCREASE_SPEED))
-  {
-    --holdFrameStepDelay;
-    if (holdFrameStepDelay < 0)
-      holdFrameStepDelay = 0;
-  }
-  else if (IsHotkey(HK_FRAME_ADVANCE_RESET_SPEED))
-  {
-    holdFrameStepDelay = 1;
-  }
-  else if (IsHotkey(HK_FRAME_ADVANCE, true))
-  {
-    if (holdFrameStepDelayCount < holdFrameStepDelay && holdFrameStep)
-      ++holdFrameStepDelayCount;
-
-    if ((frameStepCount == 0 || frameStepCount == FRAME_STEP_DELAY) && !holdFrameStep)
-    {
-      wxCommandEvent evt;
-      evt.SetId(IDM_FRAMESTEP);
-      CFrame::OnFrameStep(evt);
-      if (holdFrameStepDelay > 0)
-        holdFrameStep = true;
-    }
-
-    if (frameStepCount < FRAME_STEP_DELAY)
-    {
-      ++frameStepCount;
-      if (holdFrameStep)
-        holdFrameStep = false;
-    }
-
-    if (frameStepCount == FRAME_STEP_DELAY && holdFrameStep &&
-        holdFrameStepDelayCount >= holdFrameStepDelay)
-    {
-      holdFrameStep = false;
-      holdFrameStepDelayCount = 0;
-    }
-  }
-  else if (frameStepCount > 0)
-  {
-    // Reset values of frame advance to default
-    frameStepCount = 0;
-    holdFrameStep = false;
-    holdFrameStepDelayCount = 0;
-  }
+  
 }
 
 void CFrame::HandleSignal(wxTimerEvent& event)

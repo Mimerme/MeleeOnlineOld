@@ -43,8 +43,22 @@ public:
 	//UI Variables
 	static int MeleeNETUI::gameWindowWidth, MeleeNETUI::gameWindowHeight;
 	static bool MeleeNETUI::uiActive;
-	static std::string MeleeNETUI::menuOptions[5];
-	const static int MAX_OPTIONS = 5;
+
+	//0 - menu
+	//1 - match
+	//2 - matchconfig
+	//3 - options
+	//4 - about
+	static int MeleeNETUI::SCENE_STATE;
+
+	static std::string MeleeNETUI::menuOptions[4];
+	static std::string MeleeNETUI::matchOptions[3];
+	static std::string MeleeNETUI::about[3];
+	static std::string MeleeNETUI::matchConfig[4];
+	static std::string MeleeNETUI::options[3];
+	static std::string MeleeNETUI::lookingForMatch[3];
+
+	static int MeleeNETUI::MAX_OPTIONS;
 	static void MeleeNETUI::drawMenu();
 	static int MeleeNETUI::activeOption;
 	static int MeleeNETUI::activeColor;
@@ -54,6 +68,71 @@ public:
 		//-> Add objects to the options
 	//-> Begin render cycle
 	//->On Input waits for hotkeys
+
+	static void MeleeNETUI::back() {
+		//Exit 'Find Match'
+		if (SCENE_STATE == 1) {
+			MAX_OPTIONS = 4;
+			SCENE_STATE = 0;
+		}
+		else if (SCENE_STATE == 2) {
+			MAX_OPTIONS = 3;
+			SCENE_STATE = 1;
+		}
+		else if (SCENE_STATE == 3) {
+			MAX_OPTIONS = 4;
+			SCENE_STATE = 0;
+		}
+		else if (SCENE_STATE == 4) {
+			//Go to match config, remember friendlies
+			MAX_OPTIONS = 4;
+			SCENE_STATE = 0;
+		}
+		else if (SCENE_STATE == 5) {
+			MAX_OPTIONS = 4;
+			SCENE_STATE = 2;
+		}
+	}
+
+	static void MeleeNETUI::select() {
+		//Enter 'Find Match'
+		if (activeOption == 1 && SCENE_STATE == 0) {
+			MAX_OPTIONS = 3;
+			SCENE_STATE = 1;
+		}
+		else if (activeOption == 2 && SCENE_STATE == 0) {
+			MAX_OPTIONS = 3;
+			SCENE_STATE = 4;
+		}
+		else if (activeOption == 3 && SCENE_STATE == 0) {
+			MAX_OPTIONS = 3;
+			SCENE_STATE = 3;
+		}
+		else if (activeOption == 1 && SCENE_STATE == 1) {
+			//Go to match config, remember friendlies
+			MAX_OPTIONS = 4;
+			SCENE_STATE = 2;
+		}
+		//Not implemeneted
+		else if (activeOption == 2 && SCENE_STATE == 1) {
+			//Go to match config, remember for glory
+			//MAX_OPTIONS = 3;
+			//SCENE_STATE = 2;
+		}
+		else if (activeOption == 1 && SCENE_STATE == 3) {
+			//Performance Test
+		}
+		else if (activeOption == 2 && SCENE_STATE == 3) {
+			//Configure Dolphin
+		}
+
+		//Lookking for match
+		else if (SCENE_STATE == 2) {
+			//Go to match config, remember for glory
+			MAX_OPTIONS = 3;
+			SCENE_STATE = 5;
+		}
+	}
 
 	static void MeleeNETUI::onInput(int hotKEY) {
 		if (hotKEY == HK_MELEE_TEST) {
@@ -66,32 +145,56 @@ public:
 			}
 		}
 
-		if (!MeleeNETUI::uiActive)
-			return;
 
-		switch (hotKEY) {
-		case HK_MELEE_DOWN:
-			if ((MeleeNETUI::activeOption + 1) < MAX_OPTIONS)
-				MeleeNETUI::activeOption++;
-			break;
-		case HK_MELEE_UP:
-			if((MeleeNETUI::activeOption - 1) > 0)
-				MeleeNETUI::activeOption--;
-			break;
-		case HK_MELEE_SELECT:
-			break;
-		default:
-			break;
+		if (MeleeNETUI::uiActive == TRUE) {
+			switch (hotKEY) {
+			case HK_MELEE_DOWN:
+				if ((MeleeNETUI::activeOption + 1) < MAX_OPTIONS)
+					MeleeNETUI::activeOption++;
+				break;
+			case HK_MELEE_UP:
+				if ((MeleeNETUI::activeOption - 1) > 0)
+					MeleeNETUI::activeOption--;
+				break;
+			case HK_MELEE_SELECT:
+				MeleeNETUI::select();
+				break;
+			case HK_MELEE_BACK:
+				MeleeNETUI::back();
+				break;
+			default:
+				break;
+			}
 		}
 
 	}
 
 	static void MeleeNETUI::initalizeUIHook() {
-		menuOptions[0] = ("Melee.NET Hook!");
-		menuOptions[1] = ("By Mimerme :D");
-		menuOptions[2] = ("Test Element 1");
-		menuOptions[3] = ("Test Element 2");
-		menuOptions[4] = ("Look for netplay game");
+		menuOptions[0] = ("--Melee.NET---");
+		menuOptions[1] = ("Find Match");
+		menuOptions[2] = ("About");
+		menuOptions[3] = ("Options");
+
+		matchOptions[0] = ("--Choose Match Type--");
+		matchOptions[1] = ("Friendlies");
+		matchOptions[2] = ("For Glory (TBD)");
+
+		about[0] = ("--About--");
+		about[1] = ("Emulator written by the Dolphin Emulator Project");
+		about[2] = ("Matchmaking written by Mimerme and sprd");
+
+		matchConfig[0] = ("--Choose Match Type--");
+		matchConfig[1] = ("Infinite");
+		matchConfig[2] = ("Best of 3");
+		matchConfig[3] = ("Best of 5");
+
+		options[0] = ("--Options--");
+		options[1] = ("Performance Test");
+		options[2] = ("Configure Dolphin");
+
+		lookingForMatch[0] = "--Finding [GAMEMODE] [GAMELENGTH]--";
+		lookingForMatch[1] = "[PLACEHOLDER STATUS]";
+		lookingForMatch[2] = "Press B to Cancel";
 
 	}
 
@@ -99,8 +202,27 @@ public:
 		for (int i = 0; i < MAX_OPTIONS; i++) {
 			std::string append = "";
 			if (i == MeleeNETUI::activeOption)
-				append = ">";
-			g_renderer->RenderText(append + menuOptions[i], CalculateAlignRight(menuOptions[i], gameWindowWidth), i * 20, MeleeNETUI::activeColor);
+				append = "<";
+			switch (SCENE_STATE) {
+			case 0:
+				g_renderer->RenderText(menuOptions[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			case 1:
+				g_renderer->RenderText(matchOptions[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			case 2:
+				g_renderer->RenderText(matchConfig[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			case 3:
+				g_renderer->RenderText(options[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			case 4:
+				g_renderer->RenderText(about[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			case 5:
+				g_renderer->RenderText(lookingForMatch[i] + append, 20, (i + 1) * 20, MeleeNETUI::activeColor);
+				break;
+			}
 		}
 	}
 

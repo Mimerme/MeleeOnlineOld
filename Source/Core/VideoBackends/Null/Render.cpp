@@ -28,6 +28,11 @@ void Renderer::RenderText(const std::string& text, int left, int top, u32 color)
   NOTICE_LOG(VIDEO, "RenderText: %s", text.c_str());
 }
 
+void Renderer::RenderRect()
+{
+	NOTICE_LOG(VIDEO, "Test");
+}
+
 TargetRectangle Renderer::ConvertEFBRectangle(const EFBRectangle& rc)
 {
   TargetRectangle result;

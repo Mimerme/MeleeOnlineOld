@@ -135,9 +135,9 @@ bool DolphinApp::OnInit()
 
   AfterInit();
   
-  MeleeNETFrame* f = new MeleeNETFrame(main_frame);
-  MeleeNET::setFrame(f);
-  MeleeNET::meleeFrame->Show(true);
+ // MeleeNETFrame* f = new MeleeNETFrame(main_frame);
+  //MeleeNET::setFrame(f);
+  //MeleeNET::meleeFrame->Show(true);
 
 
   if (MeleeNET::getNetplay() && MeleeNET::is_host == false) {

@@ -554,15 +554,15 @@ void ChangeDeviceDeterministic(SIDevices device, int channel)
 
 void UpdateDevices()
 {
-	//LUL STOOPS EVVEN THE HOTKEYS FROM WROKING
-	if (MeleeNETUI::uiActive) {
-		return;
-	}
 
 
   // Update inputs at the rate of SIz
   // Typically 120hz but is variable
   g_controller_interface.UpdateInput();
+
+  if (MeleeNETUI::uiActive) {
+	  return;
+  }
 
   // Update channels and set the status bit if there's new data
   g_StatusReg.RDST0 =
